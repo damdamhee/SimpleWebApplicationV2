@@ -1,16 +1,23 @@
 import Vue from "vue";
 import Header from "@/Header.js";
+import AddPersonBtn from "@/AddPersonBtn.js";
 
 new Vue({
-    // el:'#main', //이게 없으면 직접 마운트 해주어야 한다
-    components: { 'j-header': Header },
+    components: { 'j-header': Header, 'j-button': AddPersonBtn },
     data() {
         return {}
     },
     methods: {},
     render: function (createElement) {
         let headerVDOM = createElement('j-header')
-        let ret = createElement('div',{},[headerVDOM])
+
+        let addPersonBtnVDOM = createElement('j-button', {
+            on: {
+                input: this.addPerson
+            }
+        })
+
+        let ret = createElement('div',{},[headerVDOM, addPersonBtnVDOM])
         return ret;
     }
 }).$mount('#main')
